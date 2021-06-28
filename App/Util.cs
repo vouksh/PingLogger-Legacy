@@ -116,9 +116,9 @@ namespace PingLogger
 								Directory.CreateDirectory(Config.LastTempDir);
 								Logger.Info($"Creating temporary path {Config.LastTempDir}");
 								Logger.Info($"Downloading newest installer to {Config.LastTempDir}\\PingLogger-Setup.msi");
-								var downloadURL = $"{azureURL}/{remoteVersion.Major}{remoteVersion.Minor}{remoteVersion.Build}/win/install/PingLogger.Setup.exe";
+								var downloadURL = $"{azureURL}/{remoteVersion.Major}{remoteVersion.Minor}{remoteVersion.Build}/win/install/PingLogger-Setup.msi";
 								Logger.Info($"Downloading from {downloadURL}");
-								using var downloader = new HttpClientDownloadWithProgress(downloadURL, Config.LastTempDir + "\\PingLogger.Setup.exe");
+								using var downloader = new HttpClientDownloadWithProgress(downloadURL, Config.LastTempDir + "\\PingLogger-Setup.msi");
 								splashScreen.mainLabel.Text = $"Downloading PingLogger setup v{remoteVersion}";
 								downloader.ProgressChanged += Downloader_ProgressChanged;
 								await downloader.StartDownload();
@@ -126,7 +126,7 @@ namespace PingLogger
 								Logger.Info("Uninstalling current version.");
 								Process.Start(new ProcessStartInfo
 								{
-									FileName = $"{Config.LastTempDir}/PingLogger.Setup.exe",
+									FileName = $"{Config.LastTempDir}/PingLogger-Setup.msi",
 									UseShellExecute = true,
 									Arguments = "/SILENT /CLOSEAPPLICATIONS"
 								});

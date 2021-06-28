@@ -2,14 +2,13 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/bin
+/App/bin
 /.vs
-/obj
-/Properties/PublishProfiles
-/PingLogger.csproj.user
+/App/obj
+/App/PingLogger.csproj.user
 /Installer/Release
 /Installer/Debug
-/.vscode
+/App/.vscode
 /packages
 /Installer/latest.json
 /Installer/azureKey
