@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1F1C7C5A787A4B01B9833B5D54F3793F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_53732F84727347C6801FAE83757A811C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,6 +34,12 @@
         "Entry"
         {
         "MsmKey" = "8:_7C32B4EA08F1405EB3E60CC92EFF4257"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_82923C58FC3E4ADAA319ACCAA49229A7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -202,26 +202,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F1C7C5A787A4B01B9833B5D54F3793F"
-            {
-            "SourcePath" = "8:..\\AppIcon.ico"
-            "TargetName" = "8:AppIcon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_541E9B5A38774B8684861123A876B28C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_53732F84727347C6801FAE83757A811C"
             {
             "AssemblyRegister" = "3:1"
@@ -270,6 +250,26 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82923C58FC3E4ADAA319ACCAA49229A7"
+            {
+            "SourcePath" = "8:..\\App\\AppIcon.ico"
+            "TargetName" = "8:AppIcon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_541E9B5A38774B8684861123A876B28C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -369,7 +369,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_1F1C7C5A787A4B01B9833B5D54F3793F"
+        "ARPPRODUCTICON" = "8:_82923C58FC3E4ADAA319ACCAA49229A7"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -472,6 +472,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_13D59E8DDFA449C990E5C12F663AE56F"
+            {
+            "Name" = "8:PingLogger"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_70B55D3ED968489CAEB8B6EDB9AD4802"
+            "Folder" = "8:_96D11B3456BD4224910B466CB1B9A061"
+            "WorkingFolder" = "8:_541E9B5A38774B8684861123A876B28C"
+            "Icon" = "8:_82923C58FC3E4ADAA319ACCAA49229A7"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_612612ECA2924300997D594931E844E2"
             {
             "Name" = "8:PingLogger"
@@ -483,21 +497,7 @@
             "Target" = "8:_70B55D3ED968489CAEB8B6EDB9AD4802"
             "Folder" = "8:_FE8EF5D658E046C09350E10E6CFE23C5"
             "WorkingFolder" = "8:_541E9B5A38774B8684861123A876B28C"
-            "Icon" = "8:_1F1C7C5A787A4B01B9833B5D54F3793F"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_86A4D41F53F04FC58C350833AC7645FE"
-            {
-            "Name" = "8:PingLogger"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_70B55D3ED968489CAEB8B6EDB9AD4802"
-            "Folder" = "8:_96D11B3456BD4224910B466CB1B9A061"
-            "WorkingFolder" = "8:_541E9B5A38774B8684861123A876B28C"
-            "Icon" = "8:_1F1C7C5A787A4B01B9833B5D54F3793F"
+            "Icon" = "8:_82923C58FC3E4ADAA319ACCAA49229A7"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B41288773710474195E225BFAA3963BB"
@@ -1009,7 +1009,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_70B55D3ED968489CAEB8B6EDB9AD4802"
             {
-            "SourcePath" = "8:..\\obj\\Debug\\netcoreapp3.1\\win-x64\\PingLogger.exe"
+            "SourcePath" = "8:..\\App\\obj\\Release\\net5.0-windows\\win-x64\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_541E9B5A38774B8684861123A876B28C"
