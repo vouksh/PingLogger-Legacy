@@ -1,0 +1,64 @@
+name: MSI Installer Action
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    env:
+      Solution_Name: PingLogger.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+   
+    - name: Setup VS Dev Environment
+      uses: seanmiddleditch/gha-setup-vsdevenv@v3
+      
+      
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+      
+    - name: Build installer
+      run: devenv /Project Installer $env:Solution_Name /build $env:Configuration /
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: FTP Deployment
+      uses: airvzxf/ftp-deployment-action@latest
+      with:
+        # FTP Server.
+        server: ftp.lexdysia.com
+        # FTP User.
+        user: pinglogger
+        # FTP Password.
+        password: pf6cubanwjgikxhlsqre
+        # Local directory.
+        local_dir: ./Installer/Release/
+        # Remote directory.
+        remote_dir: ./2.4.1/setup/ # optional, default is ./
+        # Delete all the files inside of the remote directory.
+        delete: true
