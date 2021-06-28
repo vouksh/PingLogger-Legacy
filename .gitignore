@@ -14,3 +14,5 @@
 /Installer/azureKey
 /Installer/errors.log
 *.user
+/Installer/OutputLegacyJson.ps1
+/Installer/legacy.json

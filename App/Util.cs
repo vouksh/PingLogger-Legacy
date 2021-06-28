@@ -97,7 +97,7 @@ namespace PingLogger
 
 					string azureURL = "https://pinglogger.lexdysia.com";
 
-					await httpClient.DownloadFileTaskAsync($"{azureURL}/latest.json", $"./latest.json");
+					await httpClient.DownloadFileTaskAsync($"{azureURL}/legacy.json", $"./latest.json");
 
 					while (!downloadComplete) { await Task.Delay(100); }
 					var latestJson = File.ReadAllText("./latest.json");
@@ -116,7 +116,7 @@ namespace PingLogger
 								Directory.CreateDirectory(Config.LastTempDir);
 								Logger.Info($"Creating temporary path {Config.LastTempDir}");
 								Logger.Info($"Downloading newest installer to {Config.LastTempDir}\\PingLogger-Setup.msi");
-								var downloadURL = $"{azureURL}/{remoteVersion.Major}{remoteVersion.Minor}{remoteVersion.Build}/win/install/PingLogger-Setup.msi";
+								var downloadURL = $"{azureURL}/{remoteVersion.Major}{remoteVersion.Minor}{remoteVersion.Build}/setup/PingLogger-Setup.msi";
 								Logger.Info($"Downloading from {downloadURL}");
 								using var downloader = new HttpClientDownloadWithProgress(downloadURL, Config.LastTempDir + "\\PingLogger-Setup.msi");
 								splashScreen.mainLabel.Text = $"Downloading PingLogger setup v{remoteVersion}";
