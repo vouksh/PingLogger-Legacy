@@ -124,11 +124,15 @@ namespace PingLogger
 								await downloader.StartDownload();
 								Config.AppWasUpdated = true;
 								Logger.Info("Uninstalling current version.");
+								string batchFile = $@"@echo off
+msiexec.exe /q /l* '{ AppContext.BaseDirectory}Logs\Installer - v{localVersion}.log' /x {Config.InstallerGUID}
+msiexec.exe /l* '{ AppContext.BaseDirectory}Logs\Installer - v{remoteVersion}.log' /i {Config.LastTempDir}/PingLogger-Setup.msi";
+								File.WriteAllText(Config.LastTempDir + "/install.bat", batchFile);
 								Process.Start(new ProcessStartInfo
 								{
-									FileName = $"{Config.LastTempDir}/PingLogger-Setup.msi",
+									FileName = "cmd.exe",
 									UseShellExecute = true,
-									Arguments = "/SILENT /CLOSEAPPLICATIONS"
+									Arguments = $"{Config.LastTempDir}/install.bat"
 								});
 
 								Logger.Info("Installer started, closing.");
@@ -136,6 +140,7 @@ namespace PingLogger
 							}
 							else
 							{
+								/* Not going to support updating the single-file version. Too messy. 
 								Logger.Info("Renamed PingLogger.exe to PingLogger-old.exe");
 								File.Move("./PingLogger.exe", "./PingLogger-old.exe");
 								Logger.Info("Downloading new PingLogger.exe");
@@ -162,11 +167,12 @@ namespace PingLogger
 
 								Logger.Info("Starting new version of PingLogger");
 								Environment.Exit(0);
+								*/
 							}
 						}
 					}
 				}
-				catch (HttpRequestException ex)
+				catch (Exception ex)
 				{
 					Logger.Error("Unable to auto update: " + ex.Message);
 					return;

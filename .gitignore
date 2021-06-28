@@ -13,3 +13,4 @@
 /Installer/latest.json
 /Installer/azureKey
 /Installer/errors.log
+*.user
