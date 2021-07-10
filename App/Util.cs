@@ -6,9 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -16,9 +14,9 @@ namespace PingLogger
 {
 	public static class Util
 	{
-		static Controls.SplashScreen splashScreen;
+		static Controls.SplashScreen _splashScreen;
 
-		public static string FileBasePath 
+		public static string FileBasePath
 		{
 			get
 			{
@@ -47,14 +45,7 @@ namespace PingLogger
 		{
 			get
 			{
-				if (File.Exists(AppContext.BaseDirectory + "Launcher.exe") && File.Exists(AppContext.BaseDirectory + "Launcher.manifest"))
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				return File.Exists(AppContext.BaseDirectory + "Launcher.exe") && File.Exists(AppContext.BaseDirectory + "Launcher.manifest");
 			}
 		}
 
@@ -83,10 +74,10 @@ namespace PingLogger
 					Logger.Info("Application already checked for update today, skipping.");
 					return;
 				}
-				splashScreen = new Controls.SplashScreen();
-				splashScreen.Show();
-				splashScreen.dlProgress.IsIndeterminate = true;
-				splashScreen.dlProgress.Value = 1;
+				_splashScreen = new Controls.SplashScreen();
+				_splashScreen.Show();
+				_splashScreen.dlProgress.IsIndeterminate = true;
+				_splashScreen.dlProgress.Value = 1;
 				var localVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
 				try
@@ -119,7 +110,7 @@ namespace PingLogger
 								var downloadURL = $"{azureURL}/{remoteVersion.Major}{remoteVersion.Minor}{remoteVersion.Build}/setup/PingLogger-Setup.msi";
 								Logger.Info($"Downloading from {downloadURL}");
 								using var downloader = new HttpClientDownloadWithProgress(downloadURL, Config.LastTempDir + "\\PingLogger-Setup.msi");
-								splashScreen.mainLabel.Text = $"Downloading PingLogger setup v{remoteVersion}";
+								_splashScreen.mainLabel.Text = $"Downloading PingLogger setup v{remoteVersion}";
 								downloader.ProgressChanged += Downloader_ProgressChanged;
 								await downloader.StartDownload();
 								Config.AppWasUpdated = true;
@@ -186,9 +177,9 @@ msiexec.exe /l* '{ AppContext.BaseDirectory}Logs\Installer - v{remoteVersion}.lo
 		{
 			if (progressPercentage.HasValue && totalFileSize.HasValue)
 			{
-				splashScreen.dlProgress.Maximum = 100;
-				splashScreen.dlProgress.Value = progressPercentage.Value;
-				splashScreen.dlProgress.IsIndeterminate = false;
+				_splashScreen.dlProgress.Maximum = 100;
+				_splashScreen.dlProgress.Value = progressPercentage.Value;
+				_splashScreen.dlProgress.IsIndeterminate = false;
 			}
 		}
 
@@ -196,8 +187,8 @@ msiexec.exe /l* '{ AppContext.BaseDirectory}Logs\Installer - v{remoteVersion}.lo
 		{
 			try
 			{
-				splashScreen?.Close();
-				splashScreen = null;
+				_splashScreen?.Close();
+				_splashScreen = null;
 			}
 			catch (NullReferenceException)
 			{
@@ -218,7 +209,7 @@ msiexec.exe /l* '{ AppContext.BaseDirectory}Logs\Installer - v{remoteVersion}.lo
 			  .Select(s => s[random.Next(s.Length)]).ToArray());
 		}
 
-		public static bool IsLightTheme 
+		public static bool IsLightTheme
 		{
 			get
 			{

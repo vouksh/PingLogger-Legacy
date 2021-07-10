@@ -25,9 +25,9 @@ namespace PingLogger.Controls
 		{
 			var assembly = Assembly.GetExecutingAssembly();
 			var resourceNames = assembly.GetManifestResourceNames();
-			var resourceName = resourceNames.Single(s => s.EndsWith("README.md"));
+			var resourceName = resourceNames.Single(s => s.EndsWith("README.md", System.StringComparison.CurrentCulture));
 			using Stream stream = assembly.GetManifestResourceStream(resourceName);
-			using StreamReader reader = new StreamReader(stream);
+			using StreamReader reader = new(stream);
 			string result = reader.ReadToEnd();
 
 			editSource.Text = result;
