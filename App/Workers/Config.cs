@@ -352,7 +352,7 @@ namespace PingLogger.Workers
 						Options = new AppOptions()
 						{
 							EnableAutoUpdate = !Util.AppIsClickOnce,
-							LogSavePath = Util.FileBasePath + Path.DirectorySeparatorChar + "Logs"
+							LogSavePath = Util.FileBasePath + "Logs"
 						};
 					}
 					SaveConfig();
